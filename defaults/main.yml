@@ -1,7 +1,7 @@
 ---
 # defaults file for hephyvienna.htcondor-ce
 grid_htc_ce_repo_install: true
-grid_htc_ce_repo_developemnt_enable: false
+grid_htc_ce_repo_development_enable: false
 grid_htc_ce_batch_system: slurm
 grid_htc_ce_pkgs:
   - htcondor-ce-bdii
