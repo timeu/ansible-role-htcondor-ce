@@ -1,5 +1,9 @@
 ---
 # tasks file for hephyvienna.htcondor-ce
 - name: Install repositories
-  include_tasks: repos.yum
+  include_tasks: repos.yml
   when: grid_htc_ce_repo_install
+
+- name: Install pkgs
+  package:
+    name: "{{ grid_htc_ce_pkgs }}"
