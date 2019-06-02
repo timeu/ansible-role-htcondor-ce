@@ -1,0 +1,65 @@
+---
+- name: Install pkgs
+  package:
+    name:
+      - htcondor-ce-client
+      - htcondor-ce-view
+      - htcondor-ce
+      - "htcondor-ce-{{ grid_htc_ce_batch_system }}"
+
+- name: Copy certificates
+  copy:
+    src: "/etc/grid-security/{{ item.src }}"
+    dest: "/etc/grid-security/{{ item.dest }}"
+    remote_src: true
+    owner: condor
+    group: condor
+  loop:
+    - src: hostcert.pem
+      dest: condorcert.pem
+    - src: hostkey.pem
+      dest: condorkey.pem
+
+- name: Configure site security
+  template:
+    src: ce-site-security.conf.j2
+    dest: /etc/condor-ce/config.d/59-site-security.conf
+  notify: reconfigure condor_ce
+
+- name: Configure main CE
+  template:
+    src: configured-attributes.conf.j2
+    dest: /etc/condor-ce/config.d/60-configured-attributes.conf
+  notify: reconfigure condor_ce
+
+- name: Configure job routes
+  copy:
+    src: job-routes.conf
+    dest: /etc/condor-ce/config.d/61-job-routes.conf
+  notify: reconfigure condor_ce
+
+- name: Configure condor mapfile
+  template:
+    src: condor_mapfile.j2
+    dest: /etc/condor-ce/condor_mapfile
+  notify: reconfigure condor_ce
+
+- name: Configure condor sysconfig
+  copy:
+    src: condor-ce.sysconfig
+    dest: /etc/sysconfig/condor-ce
+
+- name: Enable static shadow
+  include_tasks: static-shadow.yml
+  when: grid_htc_ce_enable_static_shadow
+
+- name: Enable argus authorisation
+  include_tasks: auth-argus.yml
+  when: grid_htc_argus | length > 0
+
+- name: Start HTCondor CE
+  service:
+    name: condor-ce
+    state: started
+    enabled: true
+  register: service_condor-ce

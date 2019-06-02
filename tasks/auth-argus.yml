@@ -1,0 +1,17 @@
+---
+- name: Install argus packages
+  package:
+    name:
+      - argus-pep-api-c
+      - argus-gsi-pep-callout
+    state: present
+
+- name: Configure gsi-authz
+  copy:
+    src: files/gsi-authz.conf
+    dest: /etc/grid-security/gsi-authz.conf
+
+- name: Configure gsi-pep-callout-condor
+  template:
+    src: gsi-pep-callout-condor.conf.j2
+    dest: /etc/grid-security/gsi-pep-callout-condor.conf

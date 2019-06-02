@@ -1,2 +1,5 @@
 ---
 # handlers file for hephyvienna.htcondor-ce
+- name: reconfigure condor_ce
+  command: /usr/bin/condor_ce_reconfig
+  when: not service_bdii.changed | default(true) or not service_condor-ce

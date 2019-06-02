@@ -1,5 +1,42 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    poolaccounts:
+      - name: 'cms%d.d3'
+        uid: 10000
+        number: 100
+        comment: 'Standard User of the CMS VO'
+        group: cms
+        gid: 10000
+      - name: 'cmsprd%d.d3'
+        uid: 11000
+        number: 10
+        comment: 'Production User of the CMS VO'
+        group: cmsprd
+        gid: 11000
+        groups: cms
+      - name: 'cmspil%d.d3'
+        uid: 12000
+        number: 10
+        comment: 'Pilot User of the CMS VO'
+        group: cmspil
+        gid: 10000
+        groups: cms
+      - name: 'cmssgm'
+        uid: 13000
+        comment: 'SW User of the CMS VO'
+        group: cmssgm
+        gid: 11000
+        groups: cms
+    grid_enable_repo: false
+    grid_site_name: Hephy-Vienna
+    grid_vos:
+      - cms
+    grid_host_certificate:
+      cert: files/dummy.crt
+      key: files/dummy.key
   roles:
+    - role: hephyvienna.poolaccounts
+    - role: hephyvienna.grid
     - role: hephyvienna.grid-htc-ce

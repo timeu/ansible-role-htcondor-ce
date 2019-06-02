@@ -4,16 +4,9 @@
   include_tasks: repos.yml
   when: grid_htc_ce_repo_install
 
-- name: Install pkgs
-  package:
-    name: "{{ grid_htc_ce_pkgs }}"
+- name: Install HTCondor CE
+  include_tasks: htcondor-ce.yml
 
-- name: Configure gsi-authz
-  copy:
-    src: files/gsi-authz.conf
-    dest: /etc/grid-security/gsi-authz.conf
-
-- name: Configure gsi-pep-callout-condor
-  template:
-    src: gsi-pep-callout-condor.conf.j2
-    dest: /etc/grid-security/gsi-pep-callout-condor.conf
+- name: Install BDII
+  include_tasks: bdii.yml
+  when: grid_htc_ce_enable_bdii
