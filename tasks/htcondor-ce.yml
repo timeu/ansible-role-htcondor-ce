@@ -20,33 +20,24 @@
     - src: hostkey.pem
       dest: condorkey.pem
 
-- name: Configure site security
+- name: Configure HTCondor CE
   template:
-    src: ce-site-security.conf.j2
-    dest: /etc/condor-ce/config.d/59-site-security.conf
-  notify: reconfigure condor_ce
-
-- name: Configure main CE
-  template:
-    src: configured-attributes.conf.j2
-    dest: /etc/condor-ce/config.d/60-configured-attributes.conf
-  notify: reconfigure condor_ce
-
-- name: Configure job routes
-  copy:
-    src: job-routes.conf
-    dest: /etc/condor-ce/config.d/61-job-routes.conf
-  notify: reconfigure condor_ce
-
-- name: Configure condor mapfile
-  template:
-    src: condor_mapfile.j2
-    dest: /etc/condor-ce/condor_mapfile
+    src: "{{ item.src }}"
+    dest: "/etc/condor-ce/{{ item.dest }}"
+  loop:
+    - src: ce-site-security.conf.j2
+      dest: config.d/59-site-security.conf
+    - src: configured-attributes.conf.j2
+      dest: 60-configured-attributes.conf
+    - src: job-routes.conf.j2
+      dest: config.d/61-job-routes.conf
+    - src: condor_mapfile.j2
+      dest: condor_mapfile
   notify: reconfigure condor_ce
 
 - name: Configure condor sysconfig
-  copy:
-    src: condor-ce.sysconfig
+  template:
+    src: condor-ce.sysconfig.j2
     dest: /etc/sysconfig/condor-ce
 
 - name: Enable static shadow

@@ -1,4 +1,4 @@
-{{ ansibleManaged | comment }}
+{{ ansible_managed | comment }}
 ## Allow local condor daemons to be recognised as friendly
 UID_DOMAIN = {{ grid_htc_ce_uid_domain }}
 FRIENDLY_DAEMONS = $(FRIENDLY_DAEMONS), $(FULL_HOSTNAME)@$(UID_DOMAIN)/$(FULL_HOSTNAME), *@$(UID_DOMAIN), condor@$(UID_DOMAIN)/$(FULL_HOSTNAME), condor@child/$(FULL_HOSTNAME)

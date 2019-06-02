@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 # Condor View Hosts routes your collector information to global or site collectors
 CONDOR_VIEW_HOST = {{ grid_htc_ce_condor_view_hosts | join(', ') }}
 
