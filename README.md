@@ -2,8 +2,10 @@
 
 A brief description of the role goes here.
 
+Inspired by the [Puppet Module](https://github.com/cernops/puppet-htcondor_ce)
+and the [Wiki entry](https://wiki.infn.it/progetti/htcondor-tf/htcondor-ce_setup).
+There is also the [OSG documentation](https://bbockelm.github.io/docs/compute-element/htcondor-ce-overview).
 ## Requirements
-
 
 Any pre-requisites that may not be covered by Ansible itself or the role should
 be mentioned here. For instance, if the role uses the EC2 module, it may be a
@@ -37,3 +39,8 @@ passed in as parameters) is always nice for users too:
 MIT
 
 ## Author Information
+
+Written by [Dietrich Liko](http://hephy.at/dliko) in June 2019
+
+[Institute for High Energy Physics](http://www.hephy.at) of the
+[Austrian Academy of Sciences](http://www.oeaw.ac.at)
