@@ -5,7 +5,7 @@
 
 - name: Configure BDII
   template:
-    sec: ce-bdii.conf.j2
+    src: ce-bdii.conf.j2
     dest: /etc/condor-ce/config.d/06-ce-bdii.conf
   notify: reconfigure condor_ce
 

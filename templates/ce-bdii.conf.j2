@@ -12,7 +12,7 @@ HTCONDORCE_BDII_ZKHOSTS  = {{ grid_htc_ce_election_hosts | sort | join(',')  }}
 {% else %}
 HTCONDORCE_BDII_ELECTION = LEADER
 HTCONDORCE_BDII_LEADER   = {{ grid_htc_ce_election_hosts[0] }}
-{% end %}
+{% endif %}
 
 # BDII Static Info and VOs
 HTCONDORCE_VONames = {{ grid_vos | sort | join(', ') }}

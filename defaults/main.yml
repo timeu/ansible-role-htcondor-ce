@@ -13,6 +13,6 @@ grid_htc_ce_benchmark_result: 10.00-HEP-SPEC06
 grid_htc_ce_execution_env_cores: 16
 grid_htc_ce_election_hosts:
   - "{{ ansible_fqdn }}"
-grid_htc_ce_argus_server:
+grid_htc_ce_argus_server: argus.heophy.oeaw.ac.at
 grid_htc_ce_argus_port: 8154
 grid_htc_ce_argus_resourceid: http://authz-interop.org/xacml/resource/resource-type/ce

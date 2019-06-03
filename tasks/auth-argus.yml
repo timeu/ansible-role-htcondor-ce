@@ -7,8 +7,8 @@
     state: present
 
 - name: Configure gsi-authz
-  copy:
-    src: files/gsi-authz.conf
+  template:
+    src: gsi-authz.conf.j2
     dest: /etc/grid-security/gsi-authz.conf
 
 - name: Configure gsi-pep-callout-condor

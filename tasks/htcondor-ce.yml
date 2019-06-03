@@ -46,11 +46,10 @@
 
 - name: Enable argus authorisation
   include_tasks: auth-argus.yml
-  when: grid_htc_argus | length > 0
 
 - name: Start HTCondor CE
   service:
     name: condor-ce
     state: started
     enabled: true
-  register: service_condor-ce
+  register: service_condor_ce
