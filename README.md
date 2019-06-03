@@ -5,6 +5,7 @@ A brief description of the role goes here.
 Inspired by the [Puppet Module](https://github.com/cernops/puppet-htcondor_ce)
 and the [Wiki entry](https://wiki.infn.it/progetti/htcondor-tf/htcondor-ce_setup).
 There is also the [OSG documentation](https://bbockelm.github.io/docs/compute-element/htcondor-ce-overview).
+
 ## Requirements
 
 Any pre-requisites that may not be covered by Ansible itself or the role should
