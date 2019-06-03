@@ -40,6 +40,6 @@
       key: files/dummy.key
   roles:
     - role: geerlingguy.repo-epel
-    - role: hephyvienna.poolaccounts
-    - role: hephyvienna.grid
+    - role: dietrichliko.poolaccounts
+    - role: dietrichliko.grid
     - role: hephyvienna.grid-htc-ce
