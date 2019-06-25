@@ -6,16 +6,16 @@
 ##############################################################################
 
 # For multi-CE sites, only one CE publishes certain values.
-{% if grid_htc_ce_election_hosts | length > 1 %}
+{% if htcondor_ce_election_hosts | length > 1 %}
 HTCONDORCE_BDII_ELECTION = ZOOKEEPER
-HTCONDORCE_BDII_ZKHOSTS  = {{ grid_htc_ce_election_hosts | sort | join(',')  }}
+HTCONDORCE_BDII_ZKHOSTS  = {{ htcondor_ce_election_hosts | sort | join(',')  }}
 {% else %}
 HTCONDORCE_BDII_ELECTION = LEADER
-HTCONDORCE_BDII_LEADER   = {{ grid_htc_ce_election_hosts[0] }}
+HTCONDORCE_BDII_LEADER   = {{ htcondor_ce_election_hosts[0] }}
 {% endif %}
 
 # BDII Static Info and VOs
 HTCONDORCE_VONames = {{ grid_vos | sort | join(', ') }}
 HTCONDORCE_SiteName = {{ grid_site_name }}
-HTCONDORCE_HEPSPEC_INFO = {{ grid_htc_ce_benchmark_result }}
-HTCONDORCE_CORES = {{ grid_htc_ce_execution_env_cores }} # cores per node
+HTCONDORCE_HEPSPEC_INFO = {{ htcondor_ce_benchmark_result }}
+HTCONDORCE_CORES = {{ htcondor_ce_execution_env_cores }} # cores per node

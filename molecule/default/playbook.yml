@@ -32,14 +32,12 @@
         group: cmssgm
         gid: 13000
         groups: cms
-    grid_site_name: Hephy-Vienna
+    grid_enable_dummy_ca: true
+    grid_enable_dummy_hostcert: true
     grid_vos:
       - cms
-    grid_host_certificate:
-      cert: files/dummy.crt
-      key: files/dummy.key
   roles:
     - role: geerlingguy.repo-epel
-    - role: dietrichliko.poolaccounts
-    - role: dietrichliko.grid
-    - role: hephyvienna.grid-htc-ce
+    - role: hephyvienna.poolaccounts
+    - role: hephyvienna.grid
+    - role: hephyvienna.htcondor-ce

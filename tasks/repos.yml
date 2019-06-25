@@ -15,6 +15,6 @@
     - name: htcondor-development
       description: "HTCondor Development RPM Repository for Redhat Enterprise Linux {{ ansible_distribution_major_version }}"
       baseurl: "https://research.cs.wisc.edu/htcondor/yum/development/rhel{{ ansible_distribution_major_version }}"
-      enabled: "{{ grid_htc_ce_repo_development_enable }}"
+      enabled: "{{ htcondor_ce_repo_development_enable }}"
   loop_control:
     label: "{{ item.name }}"

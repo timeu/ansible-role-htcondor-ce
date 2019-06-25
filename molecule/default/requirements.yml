@@ -1,4 +1,4 @@
 ---
 - src: geerlingguy.repo-epel
-- src: dietrichliko.grid
-- src: dietrichliko.poolaccounts
+- src: hephyvienna.grid
+- src: hephyvienna.poolaccounts

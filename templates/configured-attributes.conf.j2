@@ -1,13 +1,13 @@
 {{ ansible_managed | comment }}
 # Condor View Hosts routes your collector information to global or site collectors
-CONDOR_VIEW_HOST = {{ grid_htc_ce_condor_view_hosts | join(', ') }}
+CONDOR_VIEW_HOST = {{ htcondor_ce_condor_view_hosts | join(', ') }}
 
 # Disable problematic shared library
 CLASSAD_USER_LIBS=
 
 # Set appropriate place to route.
 JOB_ROUTER_SCHEDD2_NAME = {{ ansible_fqdn }}
-JOB_ROUTER_SCHEDD2_POOL = {{ grid_htc_ce_pool_collector_str }}
+JOB_ROUTER_SCHEDD2_POOL = {{ htcondor_ce_pool_collector_str }}
 
 # No reason to hide jobs from view on CE
 CONDOR_Q_ONLY_MY_JOBS = False

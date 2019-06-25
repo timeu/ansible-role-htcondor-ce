@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-  role_name: grid_htc_ce
+  role_name: htcondor_ce
   author: Dietrich Liko
   description: HTCondor CE
-  company: Institute for High energy Physics, Austrian Academy of Sciences
-  issue_tracker_url: https://gitlab.cern.ch/hephyvienna/ansible/role-grid-htc-ce/issues
+  company: Institute for High Energy Physics, Austrian Academy of Sciences
+  issue_tracker_url: https://gitlab.cern.ch/hephyvienna/ansible/role-htcondor-ce/issues
   license: MIT
   min_ansible_version: 2.7
   platforms:

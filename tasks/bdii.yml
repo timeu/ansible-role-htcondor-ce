@@ -7,7 +7,7 @@
   template:
     src: ce-bdii.conf.j2
     dest: /etc/condor-ce/config.d/06-ce-bdii.conf
-  notify: reconfigure condor_ce
+  notify: reconfigure htcondor_ce
 
 - name: Start BDII
   service:

@@ -2,11 +2,11 @@
 # tasks file for hephyvienna.htcondor-ce
 - name: Install repositories
   include_tasks: repos.yml
-  when: grid_htc_ce_repo_install
+  when: htcondor_ce_repo_install
 
 - name: Install HTCondor CE
   include_tasks: htcondor-ce.yml
 
 - name: Install BDII
   include_tasks: bdii.yml
-  when: grid_htc_ce_enable_bdii
+  when: htcondor_ce_enable_bdii

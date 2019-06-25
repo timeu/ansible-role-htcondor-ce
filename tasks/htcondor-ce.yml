@@ -5,7 +5,7 @@
       - htcondor-ce-client
       - htcondor-ce-view
       - htcondor-ce
-      - "htcondor-ce-{{ grid_htc_ce_batch_system }}"
+      - "htcondor-ce-{{ htcondor_ce_batch_system }}"
 
 - name: Copy certificates
   copy:
@@ -33,16 +33,16 @@
       dest: config.d/61-job-routes.conf
     - src: condor_mapfile.j2
       dest: condor_mapfile
-  notify: reconfigure condor_ce
+  notify: reconfigure htcondor_ce
 
-- name: Configure condor sysconfig
+- name: Configure HTCondor CE sysconfig
   template:
     src: condor-ce.sysconfig.j2
     dest: /etc/sysconfig/condor-ce
 
 - name: Enable static shadow
   include_tasks: static-shadow.yml
-  when: grid_htc_ce_enable_static_shadow
+  when: htcondor_ce_enable_static_shadow
 
 - name: Enable argus authorisation
   include_tasks: auth-argus.yml
