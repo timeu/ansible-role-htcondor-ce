@@ -32,12 +32,17 @@
         group: cmssgm
         gid: 13000
         groups: cms
-    grid_enable_dummy_ca: true
-    grid_enable_dummy_hostcert: true
+    grid_dummy_host_certificate: true
     grid_vos:
       - cms
+
+  pre_tasks:
+    - name: Enable EPEL
+      package:
+        name: epel-release
+        state: present
+
   roles:
-    - role: geerlingguy.repo-epel
     - role: hephyvienna.poolaccounts
     - role: hephyvienna.grid
     - role: hephyvienna.htcondor-ce

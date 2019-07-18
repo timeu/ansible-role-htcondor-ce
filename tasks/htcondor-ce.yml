@@ -9,16 +9,14 @@
 
 - name: Copy certificates
   copy:
-    src: "/etc/grid-security/{{ item.src }}"
-    dest: "/etc/grid-security/{{ item.dest }}"
+    src: "/etc/grid-security/host{{ item }}.pem"
+    dest: "/etc/grid-security/condor{{ item }}.pem"
     remote_src: true
     owner: condor
     group: condor
   loop:
-    - src: hostcert.pem
-      dest: condorcert.pem
-    - src: hostkey.pem
-      dest: condorkey.pem
+    - cert
+    - key
 
 - name: Configure HTCondor CE
   template:

@@ -1,6 +1,6 @@
 # htcondor_ce [![Build Status](https://travis-ci.com/hephyvienna/ansible-role-htcondor-ce.svg?branch=master)](https://travis-ci.com/hephyvienna/ansible-role-htcondor-ce) [![Ansible Role](https://img.shields.io/ansible/role/41511.svg)](https://galaxy.ansible.com/hephyvienna/htcondor-ce)
 
-A brief description of the role goes here.
+Configuraion of the HTCondor CE for WLCG/EGI site
 
 Inspired by the [Puppet Module](https://github.com/cernops/puppet-htcondor_ce)
 and the [Wiki entry](https://wiki.infn.it/progetti/htcondor-tf/htcondor-ce_setup).
@@ -32,11 +32,11 @@ Did not test this feature.
 
     htcondor_ce_enable_bdii: true
 
-Enable BDDI of service
+Enable BDII publictaion of the service
 
     htcondor_ce_uid_domain: "{{ ansible_domain }}"
 
-Recognise local condor daemons as friendly (not useful for batch systemn deployment)
+Recognise local condor daemons as friendly (not useful for batch system deployment)
 
     htcondor_ce_condor_view_hosts: []
 
@@ -50,17 +50,11 @@ Set appropriate place to route.
 
 
     htcondor_ce_benchmark_result: 10.00-HEP-SPEC06
-
-For BDII publishing
-
     htcondor_ce_execution_env_cores: 16
-
-For BDII publishing
-
     htcondor_ce_election_hosts:
       - "{{ ansible_fqdn }}"
 
-For BDII publishing
+For publication in the BDII
 
     htcondor_ce_argus_server: argus.hephy.oeaw.ac.at
 
@@ -79,9 +73,6 @@ Argus resource id
 -   hephyvienna.grid
 
 ## Example Playbook
-
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
 
     - hosts: servers
       vars:
@@ -118,7 +109,6 @@ passed in as parameters) is always nice for users too:
         grid_vos:
           - cms
       roles:
-        - role: geerlingguy.repo-epel
         - role: hephyvienna.poolaccounts
         - role: hephyvienna.grid
         - role: hephyvienna.htcondor-ce
