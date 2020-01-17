@@ -1,11 +1,13 @@
 ---
 - name: Install pkgs
-  package:
+  yum:
     name:
-      - htcondor-ce-client
-      - htcondor-ce-view
-      - htcondor-ce
+      - 'htcondor-ce-client'
+      - "htcondor-ce-view"
+      - "htcondor-ce"
       - "htcondor-ce-{{ htcondor_ce_batch_system }}"
+      - "lcmaps"
+    state: installed
 
 - name: Copy certificates
   copy:
@@ -23,27 +25,50 @@
     src: "{{ item.src }}"
     dest: "/etc/condor-ce/{{ item.dest }}"
   loop:
-    - src: ce-site-security.conf.j2
-      dest: config.d/59-site-security.conf
-    - src: configured-attributes.conf.j2
-      dest: 60-configured-attributes.conf
     - src: job-routes.conf.j2
-      dest: config.d/61-job-routes.conf
+      dest: config.d/60-job-routes.conf
     - src: condor_mapfile.j2
       dest: condor_mapfile
+    - src: local.conf.j2
+      dest: config.d/99-local.conf
   notify: reconfigure htcondor_ce
+
+- name: Disable WN proxy renewal
+  lineinfile:
+    state: present
+    line: "{{ item }}"
+    path: /usr/libexec/condor/glite/etc/batch_gahp.config
+  loop:
+    - blah_disable_wn_proxy_renewal=yes
+    - blah_delegate_renewed_proxies=no
+    - blah_disable_limited_proxy=yes
+
 
 - name: Configure HTCondor CE sysconfig
   template:
     src: condor-ce.sysconfig.j2
     dest: /etc/sysconfig/condor-ce
+  notify: restart htcondor_ce
 
 - name: Enable static shadow
   include_tasks: static-shadow.yml
   when: htcondor_ce_enable_static_shadow
 
+- name: Create condor spool directory
+  file:
+    state: directory
+    group: condor
+    owner: condor
+    path: "{{ htcondor_ce_spool_dir }}"
+  when: htcondor_ce_spool_dir is defined
+
 - name: Enable argus authorisation
   include_tasks: auth-argus.yml
+  when: htcondor_ce_auth == 'argus'
+
+- name: Enable lcmaps authorisation
+  include_tasks: auth-lcmaps.yml
+  when: htcondor_ce_auth == 'lcmaps'
 
 - name: Start HTCondor CE
   service:

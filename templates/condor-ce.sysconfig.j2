@@ -23,3 +23,6 @@ export GSI_PEP_CALLOUT_CONF=/etc/grid-security/gsi-pep-callout-condor.conf
 # Example: Have the HTCondor-CE use a different hostname from the rest of
 # the system.
 # export CONDORCE_HOSTNAME=condorce.example.com
+
+# required for LCMAPS because otherwise it will use LCAS and authorization won't work
+export LLGT_RUN_LCAS=no

@@ -16,3 +16,5 @@ htcondor_ce_election_hosts:
 htcondor_ce_argus_server: argus.hephy.oeaw.ac.at
 htcondor_ce_argus_port: 8154
 htcondor_ce_argus_resourceid: http://authz-interop.org/xacml/resource/resource-type/ce
+htcondor_ce_spool_dir:
+htcondor_ce_auth: lcmaps
